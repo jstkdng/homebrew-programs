@@ -9,8 +9,8 @@ class Ueberzugpp < Formula
 
   depends_on "cli11" => :build
   depends_on "cmake" => :build
-  depends_on "nlohmann-json" => :build
   depends_on "cpp-gsl" => :build
+  depends_on "nlohmann-json" => :build
   depends_on "pkg-config" => :build
   depends_on "chafa"
   depends_on "fmt"
