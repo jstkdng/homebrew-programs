@@ -24,7 +24,7 @@ class Ueberzugpp < Formula
     system "cmake", "-S", ".", "-B", "build",
                     "-DENABLE_X11=OFF",
                     "-DENABLE_OPENCV=OFF",
-                    "-DENABLE_WAYLAND=OFF"
+                    "-DENABLE_WAYLAND=OFF",
                     *std_cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build"
@@ -32,7 +32,6 @@ class Ueberzugpp < Formula
 
   test do
     ENV["TMPDIR"] = testpath
-    ENV["SPDLOG_LEVEL"] = "debug"
     __, secondary = PTY.open
     read, __ = IO.pipe
     pid = spawn("#{bin}/ueberzugpp layer -o iterm2", in: read, out: secondary)
