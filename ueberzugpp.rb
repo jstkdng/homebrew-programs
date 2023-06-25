@@ -10,21 +10,28 @@ class Ueberzugpp < Formula
   depends_on "cli11" => :build
   depends_on "cmake" => :build
   depends_on "nlohmann-json" => :build
-  depends_on "pkg-config" => :build
   depends_on "cpp-gsl" => :build
+  depends_on "pkg-config" => :build
   depends_on "fmt"
   depends_on "libsixel"
   depends_on "openssl@1.1"
   depends_on "spdlog"
   depends_on "tbb"
-  depends_on "vips"
   depends_on "chafa"
+  depends_on "vips"
+
+  on_linux do
+    depends_on "libxcb"
+    depends_on "xcb-util-image"
+    depends_on "wayland"
+    depends_on "wayland-protocols"
+  end
 
   def install
     system "cmake", "-S", ".", "-B", "build",
-                    "-DENABLE_X11=OFF",
+                    "-DENABLE_X11=#{OS.linux?}",
+                    "-DENABLE_WAYLAND=#{OS.linux?}",
                     "-DENABLE_OPENCV=OFF",
-                    "-DENABLE_WAYLAND=OFF",
                     *std_cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build"
