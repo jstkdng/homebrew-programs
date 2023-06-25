@@ -12,19 +12,20 @@ class Ueberzugpp < Formula
   depends_on "nlohmann-json" => :build
   depends_on "cpp-gsl" => :build
   depends_on "pkg-config" => :build
+  depends_on "chafa"
   depends_on "fmt"
   depends_on "libsixel"
   depends_on "openssl@1.1"
   depends_on "spdlog"
   depends_on "tbb"
-  depends_on "chafa"
   depends_on "vips"
 
   on_linux do
+    depends_on "extra-cmake-modules" => :build
+    depends_on "wayland-protocols" => :build
     depends_on "libxcb"
-    depends_on "xcb-util-image"
     depends_on "wayland"
-    depends_on "wayland-protocols"
+    depends_on "xcb-util-image"
   end
 
   def install
@@ -43,9 +44,10 @@ class Ueberzugpp < Formula
     read, __ = IO.pipe
     pid = spawn("#{bin}/ueberzugpp layer -o iterm2", in: read, out: secondary)
     sleep(0.1)
+    Process.kill("TERM", pid)
     read.close
     secondary.close
-    Process.kill("TERM", pid)
+    sleep(1)
 
     assert_predicate testpath/"ueberzugpp-#{ENV["USER"]}.log", :exist?
   end
