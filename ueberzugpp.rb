@@ -3,8 +3,8 @@ require "pty"
 class Ueberzugpp < Formula
   desc "Drop in replacement for ueberzug written in C++"
   homepage "https://github.com/jstkdng/ueberzugpp"
-  url "https://github.com/jstkdng/ueberzugpp/archive/refs/tags/v2.8.8.tar.gz"
-  sha256 "fdb2bbcc29c2325abec7f58b5f01ff26af80a52f9cd7978a10f805eaee7e7838"
+  url "https://github.com/jstkdng/ueberzugpp/archive/refs/tags/v2.8.9.tar.gz"
+  sha256 "eeff6a6583b84620b7893e44b386fbcb828c1987ec193ac486c391f316d091c8"
   head "https://github.com/jstkdng/ueberzugpp.git"
   license "GPL-3.0-or-later"
 
