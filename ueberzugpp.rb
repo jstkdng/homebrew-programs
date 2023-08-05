@@ -21,6 +21,10 @@ class Ueberzugpp < Formula
   depends_on "tbb"
   depends_on "vips"
 
+  on_macos do
+    depends_on "range-v3" => :build
+  end
+
   on_linux do
     depends_on "extra-cmake-modules" => :build
     depends_on "wayland-protocols" => :build
